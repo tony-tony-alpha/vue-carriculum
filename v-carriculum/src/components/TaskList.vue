@@ -40,6 +40,7 @@ function updateTask(title: string, newStatus: boolean) {
     list-style: none;
     padding: 0;
     margin: 0;
+    margin-top: 2rem;
 }
 
 .task-list__item {
