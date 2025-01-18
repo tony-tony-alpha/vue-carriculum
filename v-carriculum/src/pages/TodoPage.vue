@@ -1,12 +1,18 @@
 <template>
     <div class="todo-page">
         <h1 class="todo-page__title">My Tasks</h1>
+        <TaskForm @add-task="addTask" />
         <TaskList />
     </div>
 </template>
 
 <script setup lang="ts">
 import TaskList from '../components/TaskList.vue';
+import TaskForm from '../components/TaskForm.vue';
+
+const addTask = (task: Task) => {
+    console.log(task);
+};
 </script>
 
 <style scoped>
