@@ -1,28 +1,12 @@
 <template>
   <div>
-    <h1>{{ title }}</h1>
-    <p>{{ description }}</p>
-    <TaskList />
+    <TodoPage />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import TaskList from './components/TaskList.vue';
-const title = ref('Vue Curriculum');
-const description = ref('Vue Curriculum Description');
-
-// const updateTitle = (value: string) => {
-//   title.value = value;
-// };
+import TodoPage from './pages/TodoPage.vue';
 </script>
 
 <style scoped>
-h1 {
-  color: red;
-}
-
-p {
-  color: blue;
-}
 </style>
