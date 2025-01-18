@@ -1,6 +1,6 @@
 <template>
     <ul class="task-list">
-        <li v-for="task in tasks" :key="task.id" class="task-list__item">
+        <li v-for="task in props.tasks" :key="task.id" class="task-list__item">
             <TaskItem
                 :title="task.title"
                 :completed="task.completed"
@@ -12,30 +12,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import TaskItem from './TaskItem.vue';
+import type { Task } from '../pages/TodoPage.vue';
 
-interface Task {
-    id: number;
-    title: string;
-    completed: boolean;
-}
+const props = defineProps<{
+    tasks: Task[];
+}>();
 
-const tasks = ref<Task[]>([
-    { id: 1, title: 'Buy Milk', completed: false },
-    { id: 2, title: 'Buy Bread', completed: true },
-    { id: 3, title: 'Buy Eggs', completed: false },
-]);
+const emits = defineEmits<{
+    (e: 'delete:task', title: string): void;
+    (e: 'update:task', title: string, newStatus: boolean): void;
+}>();
+
 
 function deleteTask(title: string) {
-    tasks.value = tasks.value.filter(task => task.title !== title);
+    emits('delete:task', title);
 }
 
 function updateTask(title: string, newStatus: boolean) {
-    const task = tasks.value.find(t => t.title === title)
-    if (task) {
-        task.completed = newStatus;
-    }
+    emits('update:task', title, newStatus);
 }
 
 </script>

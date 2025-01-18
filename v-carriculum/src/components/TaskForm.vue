@@ -5,19 +5,18 @@
             v-model="task.title"
             placeholder="Task Title"
         />
-        <button type="submit" @click="addTask">Add Task</button>
+        <button type="submit" @click.prevent="addTask">Add Task</button>
     </form>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
-
-interface Task {
-    title: string;
-}
+import type { Task } from '../pages/TodoPage.vue';
 
 const task = ref<Task>({
+    id: Math.random(),
     title: '',
+    completed: false,
 });
 
 const emit = defineEmits<{
