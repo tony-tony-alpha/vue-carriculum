@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import LoginPage from '../pages/LoginPage.vue';
 import TodoPage from '../pages/TodoPage.vue';
 import TaskDetailPage from '../pages/TaskDetailPage.vue';
-
+import NotFoundPage from '../pages/NotFoundPage.vue';
 const routes = [
     { path: '/login', component: LoginPage },
     {
@@ -11,7 +11,8 @@ const routes = [
             { path: '', component: TodoPage }, // /todo
             { path: ':id', component: TaskDetailPage }, // /todo/123
         ]
-    }
+    },
+    { path: '/:pathMatch(.*)*', component: NotFoundPage },
 ]
 
 const router = createRouter({
