@@ -1,12 +1,18 @@
 <template>
-  <div>
-    <UserForm />
-  </div>
-</template>
+  <header>
+    <nav>
+      <router-link to="/login">Login</router-link>
+      <router-link to="/todo">Todo</router-link>
+    </nav>
+  </header>
 
+  <main>
+    <router-view />
+  </main>
+</template>
+  
 <script setup lang="ts">
-// import TodoPage from './pages/TodoPage.vue';
-import UserForm from './components/UserForm.vue';
+import { RouterView, RouterLink } from 'vue-router';
 </script>
 
 <style scoped>
