@@ -1,5 +1,6 @@
 <template>
     <div class="todo-page">
+        <h1>{{ name }}さんのタスク</h1>
         <h1 class="todo-page__title">My Tasks</h1>
         <TaskForm @add-task="addTask" />
         <TaskList
@@ -14,6 +15,10 @@
 import { ref } from 'vue';
 import TaskList from '../components/TaskList.vue';
 import TaskForm from '../components/TaskForm.vue';
+import { useUserStore } from '../store/useUserStore';
+
+const userStore = useUserStore()
+const name = userStore.userProfile?.name
 
 export interface Task {
     id: number;

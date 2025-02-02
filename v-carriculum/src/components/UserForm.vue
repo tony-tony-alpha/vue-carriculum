@@ -23,7 +23,7 @@
 import { computed } from 'vue';
 import { useForm, useField } from 'vee-validate';
 import * as yup from 'yup';
-
+import { useUserStore } from '../store/useUserStore';
 const schema = yup.object({
     username: yup.string().required("Username is required").min(3, "Username must be at least 3 characters long").test(
         'unique',
@@ -52,8 +52,11 @@ const { value: username, errorMessage: usernameErrorMessage } = useField<string>
 const { value: password, errorMessage: passwordErrorMessage } = useField<string>('password');
 const { value: confirmPassword, errorMessage: confirmPasswordErrorMessage } = useField<string>('confirmPassword');
 
+const userStore = useUserStore()
+
 const onSubmit = handleSubmit(values => {
     console.log("register with",values);
+    userStore.login(values.username, values.password)
 });
 
 const isFormValid = computed(() => {
