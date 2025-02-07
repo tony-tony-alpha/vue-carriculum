@@ -1,11 +1,4 @@
 <template>
-  <header>
-    <nav>
-      <router-link to="/login">Login</router-link>
-      <router-link to="/todo">Todo</router-link>
-    </nav>
-  </header>
-
   <main>
     <div class="main-layout">
       <Sidebar></Sidebar>
@@ -25,6 +18,7 @@ import Sidebar from './pages/SideBar.vue';
 .main-layout {
   display: flex;
   width: 100%;
+  height: 100vh;
 }
 
 .content {

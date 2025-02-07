@@ -20,7 +20,7 @@
 .sidebar {
     width: 200px;
     padding: 20px;
-    background-color: #f2f2f2;
+    background-color: #fff7db;
 }
 
 .sidebar nav {
@@ -31,7 +31,7 @@
 
 .sidebar nav a {
     text-decoration: none;
-    color: #4b3a8f;
+    color: #9e9545;
     font-size: 18px;
     font-weight: bold;
 }
