@@ -3,17 +3,12 @@
         <h1>My App</h1>
         <nav>
             <router-link to="/todo">Todo</router-link>
-            <router-link to="/login">Login</router-link>
+            <router-link to="/user_profile">User Profile</router-link>
         </nav>
     </div>
 </template>
 
 <script setup lang="ts">
-// import { useUserStore } from '../store/useUserStore';
-
-// const userStore = useUserStore()
-
-
 </script>
 
 <style scoped>

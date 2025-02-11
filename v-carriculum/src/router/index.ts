@@ -4,8 +4,11 @@ import TodoPage from '../pages/TodoPage.vue';
 import TaskDetailPage from '../pages/TaskDetailPage.vue';
 import NotFoundPage from '../pages/NotFoundPage.vue';
 import { useUserStore } from '../store/useUserStore';
+import UserProfilePage from '../pages/UserProfilePage.vue';
+
 const routes = [
     { path: '/login', component: LoginPage },
+    { path: '/user_profile', component: UserProfilePage },
     {
         path:'/todo',
         children: [
@@ -26,7 +29,7 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     const userStore = useUserStore()
-    if (to.path === '/todo' && !userStore.isAuthenticated) {
+    if (to.path !== '/login' && !userStore.isAuthenticated) {
         next({ path: '/login' });
     } else {
         next();
