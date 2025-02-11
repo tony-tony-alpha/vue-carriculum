@@ -1,12 +1,12 @@
 <template>
-    <form @submit.prevent="onSubmit" class="user-form">
+    <form class="user-form" @submit.prevent="onSubmit">
         <div>
-            <label>Username</label>
+            <p>Username</p>
             <input type="text" v-model="username" placeholder="Name" />
             <p class="error">{{ usernameErrorMessage }}</p>
         </div>
         <div>
-            <label>Password</label>
+            <p>Password</p>
             <input type="password" v-model="password" placeholder="Password" />
             <p class="error">{{ passwordErrorMessage }}</p>
         </div>
@@ -56,5 +56,38 @@ const isFormValid = computed(() => {
 })
 </script>
 
-<style scoped></style>
+<style scoped>
+.user-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+}
+
+.user-form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 80%;
+}
+
+.user-form p {
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.user-form button {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #000;
+    color: #fff;
+    width: 100%;
+}
+
+.user-form .error {
+    color: red;
+}
+</style>
 

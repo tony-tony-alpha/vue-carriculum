@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { RouterView, RouterLink } from 'vue-router';
+import { RouterView } from 'vue-router';
 import Sidebar from './pages/SideBar.vue';
 import { useUserStore } from './store/useUserStore';
 import { computed } from 'vue';
