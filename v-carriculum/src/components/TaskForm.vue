@@ -28,7 +28,7 @@ const onSubmit = () => {
     const t: Task = {
         id: Math.random(),
         title: title.value,
-        completed: false,
+        checked: false,
     };
     emit('add-task', t);
     resetField();

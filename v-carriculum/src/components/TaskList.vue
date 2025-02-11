@@ -2,8 +2,9 @@
     <ul class="task-list">
         <li v-for="task in props.tasks" :key="task.id" class="task-list__item">
             <TaskItem
+                :id="task.id"
                 :title="task.title"
-                :completed="task.completed"
+                :checked="task.checked"
                 @delete:task="deleteTask"
                 @update:task="updateTask"
             />
@@ -20,13 +21,13 @@ const props = defineProps<{
 }>();
 
 const emits = defineEmits<{
-    (e: 'delete:task', title: string): void;
+    (e: 'delete:task'): void;
     (e: 'update:task', title: string, newStatus: boolean): void;
 }>();
 
 
-function deleteTask(title: string) {
-    emits('delete:task', title);
+function deleteTask() {
+    emits('delete:task');
 }
 
 function updateTask(title: string, newStatus: boolean) {

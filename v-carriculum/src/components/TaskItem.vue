@@ -1,8 +1,8 @@
 <template>
     <div class="task-item">
-        <input type="checkbox" :checked="completed" @change="onToggle" class="task-item__checkbox" />
+        <input type="checkbox" :checked="checked" @change="onToggle" class="task-item__checkbox" />
         <span class="task-item__title">{{ title }}</span>
-        <button @click="onDelete" class="task-item__delete">Delete</button>
+        <button v-if="checked" @click="onDelete" class="task-item__delete">Delete</button>
     </div>
 </template>
 
@@ -10,11 +10,15 @@
 import { defineProps, defineEmits } from 'vue';
 
 const props = defineProps({
+  id: {
+    type: Number,
+    required: true,
+  },
   title: {
     type: String,
     required: true,
   },
-  completed: {
+  checked: {
     type: Boolean,
     default: false,
   },
@@ -22,11 +26,13 @@ const props = defineProps({
 
 const emit = defineEmits<{
   (e: 'update:task', title: string, newStatus: boolean): void;
-  (e: 'delete:task', title: string): void;
+  (e: 'delete:task'): void;
 }>();
 
+// const isChecked = computed(() => props.checked)
+
 function onDelete() {
-  emit('delete:task', props.title);
+  emit('delete:task');
 }
 
 function onToggle(e: Event) {
