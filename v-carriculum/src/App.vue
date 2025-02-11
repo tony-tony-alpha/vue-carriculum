@@ -1,7 +1,9 @@
 <template>
   <main>
     <div class="main-layout">
-      <Sidebar></Sidebar>
+      <div v-if="isAuthenticated" class="sidebar">
+        <Sidebar></Sidebar>
+      </div>
       <div class="content">
         <router-view />
       </div>
@@ -12,13 +14,21 @@
 <script setup lang="ts">
 import { RouterView, RouterLink } from 'vue-router';
 import Sidebar from './pages/SideBar.vue';
+import { useUserStore } from './store/useUserStore';
+import { computed } from 'vue';
+const userStore = useUserStore()
+const isAuthenticated = computed(() => userStore.isAuthenticated)
 </script>
 
 <style scoped>
 .main-layout {
   display: flex;
-  width: 100%;
   height: 100vh;
+}
+
+.sidebar {
+  padding: 20px;
+  background-color: #fff7db;
 }
 
 .content {

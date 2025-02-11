@@ -6,6 +6,7 @@
             <router-link to="/user_profile">User Profile</router-link>
         </nav>
     </div>
+
 </template>
 
 <script setup lang="ts">
