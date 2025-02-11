@@ -10,11 +10,6 @@
             <input type="password" v-model="password" placeholder="Password" />
             <p class="error">{{ passwordErrorMessage }}</p>
         </div>
-        <div>
-            <label>Confirm Password</label>
-            <input type="password" v-model="confirmPassword" placeholder="Confirm Password" />
-            <p class="error">{{ confirmPasswordErrorMessage }}</p>
-        </div>
         <button type="submit" :disabled="!isFormValid">Submit</button>
     </form>
 </template>
@@ -36,13 +31,6 @@ const schema = yup.object({
         }
     ),
     password: yup.string().required().min(6),
-    confirmPassword: yup.string().required().test(
-        'match',
-        'Passwords do not match',
-        function (value) {
-            return this.parent.password === value;
-        }
-    )
 })
 
 const { handleSubmit, isSubmitting } = useForm({
@@ -50,17 +38,21 @@ const { handleSubmit, isSubmitting } = useForm({
 })
 const { value: username, errorMessage: usernameErrorMessage } = useField<string>('username');
 const { value: password, errorMessage: passwordErrorMessage } = useField<string>('password');
-const { value: confirmPassword, errorMessage: confirmPasswordErrorMessage } = useField<string>('confirmPassword');
+// const { value: confirmPassword, errorMessage: confirmPasswordErrorMessage } = useField<string>('confirmPassword');
 
 const userStore = useUserStore()
+const emit = defineEmits<{  
+    (e: 'login'): void
+}>()
 
 const onSubmit = handleSubmit(values => {
     console.log("register with",values);
     userStore.login(values.username, values.password)
+    emit('login')
 });
 
 const isFormValid = computed(() => {
-    return !usernameErrorMessage.value && !passwordErrorMessage.value && !confirmPasswordErrorMessage.value;
+    return !usernameErrorMessage.value && !passwordErrorMessage.value 
 })
 </script>
 
