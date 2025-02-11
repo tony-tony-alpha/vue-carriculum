@@ -22,7 +22,7 @@ const emit = defineEmits<{
 }>();
 
 const titleSchema = yup.string().required('Task title cannot be empty').max(20, 'Task title cannot be longer than 20 characters');
-const { value: title, errorMessage } = useField<string>('title', titleSchema);
+const { value: title, errorMessage, resetField } = useField<string>('title', titleSchema);
 
 const onSubmit = () => {
     const t: Task = {
@@ -31,7 +31,7 @@ const onSubmit = () => {
         completed: false,
     };
     emit('add-task', t);
-    title.value = '';
+    resetField();
 }
 
 const isFormValid = computed(()=> !errorMessage.value && title.value);
